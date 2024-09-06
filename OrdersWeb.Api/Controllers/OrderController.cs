@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace OrdersWeb.Api;
+namespace OrdersWeb.Api.Controllers;
 
+[ApiController]
+[Route("[controller]")]
 public class OrderController : ControllerBase
 {
     [HttpPost]

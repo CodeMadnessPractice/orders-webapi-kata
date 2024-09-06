@@ -1,6 +1,6 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
+using OrdersWeb.Api.Controllers;
 
 namespace OrdersWeb.Api.Test
 {
