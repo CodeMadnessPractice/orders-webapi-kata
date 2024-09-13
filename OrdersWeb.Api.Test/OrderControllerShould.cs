@@ -15,7 +15,7 @@ namespace OrdersWeb.Api.Test
         }
 
         [Test]
-        public async Task call_create_order_handler_when_request_is_valid()
+        public async Task returns_ok_when_request_is_valid()
         {
             //given
             createOrderHandler.Handle().Returns(null);
@@ -29,14 +29,14 @@ namespace OrdersWeb.Api.Test
             result.Should().BeOfType(typeof(CreatedResult));
 
         }
-        public void not_call_create_order_handler_when_request_is_invalid()
+        public void returns_error_when_request_is_invalid()
         {
             //given
 
             //when
 
             //then
-
+            //result.Should().BeOfType(typeof(NotFoundResult));
         }
     }
 }
