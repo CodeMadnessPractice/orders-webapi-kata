@@ -9,6 +9,7 @@ public class OrderController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post(OrderRequest givenOrderRequest)
     {
+        var createdOrderHandler = new CreateOrderHandler.Handle();
         return Created("", null);
     }
 }
