@@ -4,12 +4,21 @@ namespace OrdersWeb.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class OrderController : ControllerBase
+public class OrderController(CreateOrderHandler createOrderHandler) : ControllerBase
 {
+    private CreateOrderHandler createOrderHandler = createOrderHandler;
+
     [HttpPost]
     public async Task<IActionResult> Post(OrderRequest givenOrderRequest)
     {
-        var createdOrderHandler = new CreateOrderHandler.Handle();
-        return Created("", null);
+        try
+        {
+            var createdOrderHandler = createOrderHandler.Handle();
+            return Created("", null);
+        }
+        catch(Exception)
+        {
+            return BadRequest("Patata");
+        }
     }
 }

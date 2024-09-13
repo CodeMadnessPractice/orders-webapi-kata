@@ -15,8 +15,9 @@ namespace OrdersWeb.Api.Test
         [SetUp]
         public void Setup()
         {
-            orderController = new OrderController();
             createOrderHandler = Substitute.For<CreateOrderHandler>();
+
+            orderController = new OrderController(createOrderHandler);
         }
 
         [Test]
@@ -45,7 +46,21 @@ namespace OrdersWeb.Api.Test
             var result = await orderController.Post(givenInvalidOrderRequest);
             
             //then
-            result.Should().BeOfType(typeof(BadHttpRequestException));
+            result.Should().BeOfType(typeof(BadRequestObjectResult));
+        }
+
+        [Test]
+        public async Task returns_id_when_order_is_created_correctly()
+        {
+            //Given
+            var givenRq = new OrderRequest();
+            createOrderHandler.Handle().Returns(1);
+
+            //When
+            var result = await orderController.Post(givenRq);
+
+            //Then
+            ((CreatedResult)result).Value.Should().Be(1);
         }
     }
 }
