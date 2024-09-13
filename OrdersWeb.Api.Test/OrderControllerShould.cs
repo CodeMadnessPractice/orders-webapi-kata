@@ -49,7 +49,6 @@ namespace OrdersWeb.Api.Test
             result.Should().BeOfType(typeof(BadRequestObjectResult));
         }
 
-        [Test]
         [TestCase(1)]
         [TestCase(3)]
         public async Task returns_id_when_order_is_created_correctly(int valueReturned)
