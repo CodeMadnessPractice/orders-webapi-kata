@@ -14,7 +14,7 @@ public class OrderController(CreateOrderHandler createOrderHandler) : Controller
         try
         {
             var createdOrderHandler = createOrderHandler.Handle();
-            return Created("", null);
+            return Created("", createdOrderHandler);
         }
         catch(Exception)
         {

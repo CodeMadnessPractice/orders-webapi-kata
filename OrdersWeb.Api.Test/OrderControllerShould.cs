@@ -50,17 +50,19 @@ namespace OrdersWeb.Api.Test
         }
 
         [Test]
-        public async Task returns_id_when_order_is_created_correctly()
+        [TestCase(1)]
+        [TestCase(3)]
+        public async Task returns_id_when_order_is_created_correctly(int valueReturned)
         {
             //Given
             var givenRq = new OrderRequest();
-            createOrderHandler.Handle().Returns(1);
+            createOrderHandler.Handle().Returns(valueReturned);
 
             //When
             var result = await orderController.Post(givenRq);
 
             //Then
-            ((CreatedResult)result).Value.Should().Be(1);
+            ((CreatedResult)result).Value.Should().Be(valueReturned);
         }
     }
 }
